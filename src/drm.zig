@@ -90,7 +90,7 @@ pub const DrmHandle = struct {
         const rsrc = c.drmModeGetResources(self.fd) orelse return error.GetResources;
         defer c.drmModeFreeResources(rsrc);
 
-        for (0..@intCast(rsrc.*.count_connectors)) |i| {
+        for (0..@intCast(rsrc.count_connectors)) |i| {
             const conn = c.drmModeGetConnector(self.fd, rsrc.*.connectors[i]);
             defer c.drmModeFreeConnector(conn);
 
